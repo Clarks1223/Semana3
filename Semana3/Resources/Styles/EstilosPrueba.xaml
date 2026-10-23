@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!--
+        ESTILOS DE REFERENCIA (se mezcla en App.xaml después de Styles.xaml).
+
+        Reglas para que no choquen entre sí ni con la plantilla:
+        1. Todo lo nuevo lleva el prefijo "Prueba", así nunca repite una clave de Colors.xaml / Styles.xaml.
+        2. Implícito global: solo sobre un tipo que Styles.xaml NO define (Stepper). Si se redefiniera
+           Button, Label o Entry aquí, reemplazaría el estilo de la plantilla y cambiaría todas las vistas.
+        3. Explícitos: llevan x:Key y solo actúan donde se escribe Style="{StaticResource ...}".
+        4. Un valor escrito directo en el control (TextColor="White") siempre gana a cualquier estilo.
+        Orden de prioridad (menor a mayor): implícito global < implícito de página < explícito < valor directo.
+    -->
+
+    <!-- ===== 1. GLOBAL: recursos compartidos (colores y medidas) ===== -->
+    <Color x:Key="PruebaAcento">#0E9F8E</Color>
+    <Color x:Key="PruebaAcentoOscuro">#0B7A6D</Color>
+    <Color x:Key="PruebaFondoSuave">#E8F6F4</Color>
+    <Color x:Key="PruebaTexto">#12312D</Color>
+    <x:Double x:Key="PruebaRadio">16</x:Double>
+    <x:Double x:Key="PruebaAltoControl">48</x:Double>
+
+    <!-- ===== 2. IMPLÍCITO GLOBAL: sin x:Key, afecta a todos los Stepper de la app ===== -->
+    <Style TargetType="Stepper">
+        <Setter Property="BackgroundColor" Value="{StaticResource PruebaFondoSuave}" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+
+    <!-- ===== 3. EXPLÍCITOS GLOBALES: con x:Key, se aplican con Style="{StaticResource ...}" ===== -->
+    <Style x:Key="PruebaTitulo" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource PruebaTexto}" />
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style x:Key="PruebaTextoSecundario" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource Gray500}" />
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+
+    <Style x:Key="PruebaBotonPrimario" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource PruebaAcento}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="CornerRadius" Value="{StaticResource PruebaRadio}" />
+        <Setter Property="HeightRequest" Value="{StaticResource PruebaAltoControl}" />
+    </Style>
+
+    <Style x:Key="PruebaBotonSecundario" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{StaticResource PruebaAcentoOscuro}" />
+        <Setter Property="BorderColor" Value="{StaticResource PruebaAcento}" />
+        <Setter Property="BorderWidth" Value="1.5" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="CornerRadius" Value="{StaticResource PruebaRadio}" />
+        <Setter Property="HeightRequest" Value="{StaticResource PruebaAltoControl}" />
+    </Style>
+
+    <Style x:Key="PruebaTarjeta" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource PruebaFondoSuave}" />
+        <Setter Property="Stroke" Value="{StaticResource PruebaAcento}" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="Padding" Value="16" />
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="16" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

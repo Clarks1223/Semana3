@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Semana3.Views.vEstilos"
+             Title="Estilos de prueba">
+
+    <ContentPage.Resources>
+        <!-- IMPLÍCITO DE PÁGINA: sin x:Key, solo afecta a los BoxView de esta página.
+             Reemplaza al BoxView de la plantilla únicamente aquí; las demás vistas no lo ven. -->
+        <Style TargetType="BoxView">
+            <Setter Property="Color" Value="{StaticResource PruebaAcento}" />
+            <Setter Property="HeightRequest" Value="4" />
+            <Setter Property="CornerRadius" Value="2" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20" MaximumWidthRequest="480">
+
+            <Label Text="Guía de estilos" Style="{StaticResource PruebaTitulo}"
+                   SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Orden de prioridad: implícito global, implícito de página, explícito y valor directo."
+                   Style="{StaticResource PruebaTextoSecundario}" />
+
+            <!-- GLOBAL -->
+            <Border Style="{StaticResource PruebaTarjeta}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="1. Global (App)" Style="{StaticResource PruebaTitulo}" FontSize="18" />
+                    <Label Text="Colores y medidas Prueba* definidos en EstilosPrueba.xaml; los usan todos los estilos de abajo."
+                           Style="{StaticResource PruebaTextoSecundario}" />
+                    <HorizontalStackLayout Spacing="8">
+                        <BoxView Color="{StaticResource PruebaAcento}" WidthRequest="40" />
+                        <BoxView Color="{StaticResource PruebaAcentoOscuro}" WidthRequest="40" />
+                        <BoxView Color="{StaticResource PruebaTexto}" WidthRequest="40" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- IMPLÍCITO -->
+            <Border Style="{StaticResource PruebaTarjeta}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="2. Implícito (sin x:Key)" Style="{StaticResource PruebaTitulo}" FontSize="18" />
+                    <Label Text="Stepper: estilo global implícito, no lleva Style. BoxView: implícito de esta página."
+                           Style="{StaticResource PruebaTextoSecundario}" />
+                    <Stepper Minimum="0" Maximum="10" Value="3" />
+                    <BoxView />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- EXPLÍCITO -->
+            <Border Style="{StaticResource PruebaTarjeta}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="3. Explícito (con x:Key)" Style="{StaticResource PruebaTitulo}" FontSize="18" />
+                    <Label Text="Solo cambia lo que lleva Style=&quot;{StaticResource ...}&quot;."
+                           Style="{StaticResource PruebaTextoSecundario}" />
+                    <Button Text="Botón primario" Style="{StaticResource PruebaBotonPrimario}" />
+                    <Button Text="Botón secundario" Style="{StaticResource PruebaBotonSecundario}" />
+                    <Button Text="Botón sin Style (plantilla)" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Volver" Style="{StaticResource PruebaBotonSecundario}" Clicked="btnVolver_Clicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

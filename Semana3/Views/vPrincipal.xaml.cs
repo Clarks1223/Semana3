@@ -10,6 +10,11 @@ public partial class vPrincipal : ContentPage
 
     protected override bool OnBackButtonPressed() => true; // no volver al login con atrás
 
+    private async void btnEstilos_Clicked(object? sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new vEstilos());
+    }
+
     private async void btnCerrarSesion_Clicked(object? sender, EventArgs e)
     {
         await Navigation.PopToRootAsync();
